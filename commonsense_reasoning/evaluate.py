@@ -13,7 +13,7 @@ sys.path.append(os.path.join(os.getcwd(), "peft/src/"))
 from peft import PeftModel
 '''
 #sys.path.append(os.path.join(os.getcwd(), "peft/src/"))
-sys.path.append('/content/DoRA/commonsense_reasoning/peft/src')
+sys.path.append('/content/Dora_modified/commonsense_reasoning/peft/src')
 
 print(sys.path)
 

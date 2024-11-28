@@ -49,7 +49,7 @@ from peft import (  # noqa: E402
 '''
 import sys
 
-sys.path.append('/content/DoRA/commonsense_reasoning/peft/src')
+sys.path.append('/content/Dora_modified/commonsense_reasoning/peft/src')
 
 print(sys.path)
 
