@@ -189,7 +189,7 @@ def load_data(args) -> list:
 
     """
     #file_path = f'dataset/{args.dataset}/test.json'
-    file_path = "/content/DoRA/commonsense_reasoning/peft/src/dataset/MultiArith/test.json"
+    file_path = "/content/Dora_modified/commonsense_reasoning/peft/src/dataset/MultiArith/test.json"
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"can not find dataset file : {file_path}")
     json_data = json.load(open(file_path, 'r'))
