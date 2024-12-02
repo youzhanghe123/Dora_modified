@@ -161,6 +161,7 @@ class DoraModel(torch.nn.Module):
         """Check if a module should be targeted based on both general and layer-specific rules."""
         # Added Layer-Specific Target Checking
         #print("key : ", key)
+        
         if self.peft_config.layer_specific_target_modules is not None:
             # Extract layer number from key (assuming format like "layer.01.k_proj")
             layer_match = re.search(r'\.(\d+)\.', key)
@@ -171,10 +172,23 @@ class DoraModel(torch.nn.Module):
                     if specific_layer == layer_num:
                         if any(target in key for target in self.peft_config.layer_specific_target_modules[specific_layer]):
                             return True
-
+                            
         # General target module check
+        '''
         if self.peft_config.target_modules is None:
             return False
+        
+        print("judge" ,layer_specific_target_modules_exist)
+        '''
+        # Check general targets if not already targeted
+        if self.peft_config.layer_specific_target_modules is None and self.peft_config.target_modules is not None:
+          if isinstance(self.peft_config.target_modules, str):
+              return bool(re.fullmatch(self.peft_config.target_modules, key))
+          else:
+              # Handle list of target modules
+              return any(key.endswith(target_key) for target_key in self.peft_config.target_modules)
+      
+
         if isinstance(self.peft_config.target_modules, str):
             return bool(re.fullmatch(self.peft_config.target_modules, key))
         #return any(key.endswith(target_key) for target_key in self.peft_config.target_modules)
